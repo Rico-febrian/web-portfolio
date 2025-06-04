@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rico Febrian - Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #2ac45d;
+      --primary-dark: #1e9c4a;
+      --dark: #0d0d0d;
+      --dark-light: #1a1a1a;
+      --gray: #cccccc;
+      --gray-dark: #666666;
+      --photo-scale: 1; /* untuk animasi scale foto */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Lexend', sans-serif;
+    }
+
+    body {
+      background-color: var(--dark);
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Header Section */
+    header {
+      padding: 3rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: justify;
+      background: linear-gradient(105deg, var(--dark) 45%, rgba(42, 196, 93, 0.03));
+      position: relative;
+      min-height: 90vh;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%) scale(var(--photo-scale));
+      width: 40%;
+      height: 83%;
+      background: url('photo.jpg') no-repeat right center/cover;
+      z-index: 0;
+      filter: grayscale(100%) brightness(0.7) contrast(1.1) sepia(10%);
+      border-radius: 1rem;
+      box-shadow: 
+        0 0 30px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+      opacity: 0.9;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      mask-image: linear-gradient(
+        to left,
+        rgba(0,0,0,1) 60%,
+        rgba(0,0,0,0) 100%
+      );
+      transform-origin: center center;
+    }
+
+    header:hover::after {
+      filter: grayscale(100%) brightness(0.75) contrast(1.1) sepia(10%);
+      box-shadow: 
+        0 0 40px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+      mask-image: linear-gradient(
+        to left,
+        rgba(0,0,0,1) 50%,
+        rgba(0,0,0,0) 90%
+      );
+    }
+
+    .intro-text {
+      max-width: 600px;
+      background: rgba(20, 20, 20, 0.7);
+      padding: 2.5rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(12px);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+      background: linear-gradient(
+        to right,
+        rgba(20, 20, 20, 0.9) 0%,
+        rgba(20, 20, 20, 0.7) 80%,
+        rgba(20, 20, 20, 0) 100%
+      );
+    }
+
+    @keyframes fadeUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      background: linear-gradient(90deg, #ffffff 0%, var(--gray) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header h1 span {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 1.05rem;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+      font-weight: 300;
+    }
+
+    /* Social Links */
+    .social-links {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      font-size: 0.85rem;
+      color: var(--primary);
+      border: 1px solid rgba(42, 196, 93, 0.3);
+      padding: 0.5rem 1.2rem;
+      border-radius: 5rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 15px rgba(42, 196, 93, 0.15);
+      background: rgba(20, 20, 20, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .social-links a i {
+      font-size: 0.9rem;
+    }
+
+    .social-links a:hover {
+      background-color: var(--primary);
+      color: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(42, 196, 93, 0.3);
+      border-color: transparent;
+    }
+
+    /* Download Button */
+    .btn-download {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.5rem;
+      border-radius: 5rem;
+      border: 1px solid rgba(42, 196, 93, 0.3);
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 15px rgba(42, 196, 93, 0.15);
+      background: rgba(20, 20, 20, 0.6);
+      color: var(--primary);
+    }
+
+    .btn-download:hover {
+      background-color: var(--primary);
+      color: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(42, 196, 93, 0.3);
+      border-color: transparent;
+    }
+
+    /* Projects Section */
+    section.projects {
+      padding: 6rem 5%;
+      background: linear-gradient(to bottom, var(--dark) 0%, var(--dark-light) 100%);
+      position: relative;
+    }
+
+    section.projects::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(42, 196, 93, 0.3) 50%, transparent 100%);
+    }
+
+    section.projects h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    section.projects h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+    }
+
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .project-item {
+      background-color: var(--dark-light);
+      padding: 3rem 2rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(42, 196, 93, 0.05) 0%, transparent 100%);
+      z-index: 0;
+    }
+
+    .project-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px -10px rgba(42, 196, 93, 0.3);
+      border-color: rgba(42, 196, 93, 0.2);
+    }
+
+    .project-item h3 {
+      margin-bottom: 1.2rem;
+      font-size: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-item h3 a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .project-item h3 a::after {
+      content: '→';
+      margin-left: 0.3rem;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .project-item h3 a:hover::after {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    .project-item p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      line-height: 1.7;
+    }
+
+    .project-item p:last-child {
+      margin-bottom: 0; /* ⬅️ Supaya yang paling bawah nggak terlalu jauh dari border card */
+    }
+
+    .project-item p strong {
+      color: var(--green); /* ⬅️ Biar tulisan 'Tech Stack:' lebih standout */
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem;
+      font-size: 0.9rem;
+      color: var(--gray-dark);
+      background: var(--dark-light);
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(42, 196, 93, 0.3) 50%, transparent 100%);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      header {
+        flex-direction: column;
+        min-height: auto;
+      }
+
+      header::after {
+        width: 70%;
+        height: 60%;
+        top: 40%;
+        right: 50%;
+        transform: translate(50%, -50%) scale(var(--photo-scale));
+        mask-image: none;
+      }
+
+      .intro-text {
+        max-width: 100%;
+        margin-bottom: 3rem;
+        background: rgba(20, 20, 20, 0.85);
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 2rem 3%;
+      }
+
+      section.projects {
+        padding: 4rem 3%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="intro-text">
+      <h1>Hi I'm <span>Rico Febrian</span></h1>
+      <p>I'm on my way to becoming a data engineer, with over a year of hands-on experience building ETL pipelines and data warehouses using Python, PostgreSQL, and tools like Pandas, PySpark, Airflow, and DBT.</p>
+      <p>I enjoy making sense of messy data, cleaning it up, organizing it, and turning it into something useful that people can actually make decisions from. 
+        Right now, I’m leveling up through hands-on projects and ready to take on new data challenges.</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/ricofebrian" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com/Rico-febrian" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="mailto:ricofebrian.work@gmail.com" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+        <a href="https://wa.me/6285921011040" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+      <a href="" download class="btn-download">
+        <i class="fas fa-download"></i> Download Resume
+      </a>
+    </div>
+  </header>
+
+  <section class="projects">
+    <h2>Personal Projects</h2>
+    <div class="project-list">
+      <article class="project-item">
+        <h3><a href="https://github.com/Rico-febrian/flight-bookings-elt-pipeline-with-airflow" target="_blank">Flight Bookings ELT Pipeline with Airflow</a></h3>
+        <p>Built a complete ELT pipeline using Airflow to automate and orchestrate data processing tasks for a flight booking business, storing the results in PostgreSQL.</p>
+        <p><strong>Tech Stack:</strong> Python, Airflow, PostgreSQL, Docker</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://github.com/Rico-febrian/etl-pipeline-for-venture-capital-business" target="_blank">ETL Pipeline & Data Warehouse for Venture Capital</a></h3>
+        <p>Built an ETL pipeline and designed a data warehouse to track startup investment performance and portfolio trends for a venture capital use case.</p>
+        <p><strong>Tech Stack:</strong> Python, PySpark, PostgreSQL, Docker</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://github.com/Rico-febrian/etl-bank-transaction-with-pyspark" target="_blank">Banking Transaction ETL with PySpark</a></h3>
+        <p>Processed and transformed raw banking transaction data using PySpark, then stored the results in PostgreSQL for downstream analytics and reporting.</p>
+        <p><strong>Tech Stack:</strong> Python, PySpark, PostgreSQL, Docker</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://github.com/Rico-febrian/elt-pipeline-for-supply-chain-business" target="_blank">Supply Chain Data Warehouse & ELT Pipeline</a></h3>
+        <p>Designed a dimensional data model based on supply chain metrics, then implemented an ELT pipeline using DBT and Airflow to populate and update the warehouse.</p>
+        <p><strong>Tech Stack:</strong> Python, DBT, Airflow (Astronomer), PostgreSQL, Looker Studio, Docker</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://github.com/Rico-febrian/elt-dwh-for-ecommerce-business" target="_blank">E-commerce Data Warehouse & ELT</a></h3>
+        <p>Created a dimensional model and built an ELT pipeline to handle sales, customer, and product data for an e-commerce platform.</p>
+        <p><strong>Tech Stack:</strong> Python, Pandas, DBT, Luigi, PostgreSQL, Docker</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://github.com/Rico-febrian/elt-dwh-for-online-travel-agent-business" target="_blank">Online Travel Agent: ELT & DWH</a></h3>
+        <p>Built an ELT pipeline and data warehouse to process travel bookings and customer data, enabling reporting and trend analysis.</p>
+        <p><strong>Tech Stack:</strong> Python, Pandas, DBT, Luigi, PostgreSQL, Docker</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://github.com/Rico-febrian/elt-dwh-for-online-bookstore-business" target="_blank">Online Bookstore: ELT & DWH</a></h3>
+        <p>Built a complete ELT pipeline and dimensional warehouse to analyze book sales and customer behavior in an online bookstore scenario.</p>
+        <p><strong>Tech Stack:</strong> Python, Pandas, DBT, Luigi, PostgreSQL, Docker</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://github.com/Rico-febrian/simple-etl-with-luigi" target="_blank">ETL Pipeline with Web Scraping (E-commerce Case)</a></h3>
+        <p>Scraped product data from an e-commerce site and built an ETL pipeline to clean and load the data into a PostgreSQL database.</p>
+        <p><strong>Tech Stack:</strong> Python, Pandas, BeautifulSoup, Playwright, Luigi, PostgreSQL, Docker</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://medium.com/@ricofebrian731/deploying-a-machine-learning-model-to-mlflow-with-ci-cd-b180f5e17523" target="_blank">ML Model Deployment with MLflow & CI/CD</a></h3>
+        <p>Deployed a machine learning model using MLflow and automated the pipeline with GitHub Actions. Configured NGINX for secure access with reverse proxy and HTTPS.</p>
+        <p><strong>Tech Stack:</strong> Python, Docker, AWS EC2, MLflow, GitHub Actions, MinIO, DVC, NGINX, Locust</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://www.canva.com/design/DAGLqgqLe80/DkUu6-4wu1aLDYOjolAglg/view?utm_content=DAGLqgqLe80&utm_campaign=designshare&utm_medium=link&utm_source=editor" target="_blank">CI/CD Deployment: Homepage Form App</a></h3>
+        <p>Deployed a homepage form app with CI/CD automation, NGINX load balancing, and SSL setup to ensure secure access over HTTPS.</p>
+        <p><strong>Tech Stack:</strong> Docker, AWS EC2, GitHub Actions, NGINX</p>
+      </article>
+
+      <article class="project-item">
+        <h3><a href="https://www.canva.com/design/DAGKP7RlfNE/1cqnzBe_4cAifj9T_M8uzg/view?utm_content=DAGKP7RlfNE&utm_campaign=designshare&utm_medium=link&utm_source=editor" target="_blank">CI/CD Deployment: Simple Email App</a></h3>
+        <p>Automated deployment of a simple email web app with CI/CD using GitHub Actions and configured secure access through NGINX and SSL.</p>
+        <p><strong>Tech Stack:</strong> Docker, AWS EC2, GitHub Actions, NGINX</p>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025.</p>
+  </footer>
+
+</body>
+
+</html>
